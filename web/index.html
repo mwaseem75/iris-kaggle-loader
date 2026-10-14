@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iris-kaggle-loader &middot; Dataset Explorer &amp; Import Studio</title>
+<script>
+  try { document.documentElement.setAttribute("data-theme", localStorage.getItem("kaggle2iris.theme") === "light" ? "light" : "dark"); } catch (e) {}
+</script>
+<link rel="stylesheet" href="app.css?v=2">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="#/explore" aria-label="iris-kaggle-loader home">
+    <span class="brand-mark" aria-hidden="true">KG</span>
+    <span class="brand-text"><strong>iris-kaggle-loader</strong><span>Dataset Explorer &amp; Import Studio</span></span>
+  </a>
+  <form class="topbar-search" id="globalSearch" role="search">
+    <label class="sr-only" for="globalQuery">Search Kaggle datasets</label>
+    <input id="globalQuery" type="search" placeholder="Search datasets, e.g. titanic, iris, housing" autocomplete="off">
+  </form>
+  <div class="topbar-right">
+    <span class="status-pill" id="statusPill" hidden></span>
+    <button class="btn btn-sm btn-ghost" id="themeToggle" type="button">Light</button>
+    <span class="user" id="userBox" hidden><span id="userName"></span><button class="link-btn" id="signOut" type="button">Sign out</button></span>
+  </div>
+</header>
+
+<nav class="sidenav" aria-label="Main">
+  <a href="#/explore" data-nav="explore">Explore</a>
+  <a href="#/imports" data-nav="imports">Imports</a>
+  <a href="#/tables" data-nav="tables">Tables</a>
+</nav>
+
+<main id="main" tabindex="-1"></main>
+
+<dialog id="loginDialog" aria-labelledby="loginTitle">
+  <form method="dialog" id="loginForm" class="login-form">
+    <h2 id="loginTitle">Sign in to IRIS</h2>
+    <p class="muted">Use your IRIS account. The credentials stay in this browser tab.</p>
+    <label for="loginUser">Username</label>
+    <input id="loginUser" autocomplete="username" value="_SYSTEM" required>
+    <label for="loginPass">Password</label>
+    <input id="loginPass" type="password" autocomplete="current-password" required>
+    <p class="form-error" id="loginError" role="alert"></p>
+    <button class="btn btn-primary" type="submit">Sign in</button>
+  </form>
+</dialog>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<script type="module" src="js/app.js?v=2"></script>
+</body>
+</html>
