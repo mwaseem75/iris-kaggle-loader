@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+  <Document name="iris-kaggle-loader.ZPM">
+    <Module>
+      <Name>iris-kaggle-loader</Name>
+      <Version>1.0.0</Version>
+      <Description>Load Kaggle datasets (CSV, Parquet, JSON, Excel) into InterSystems IRIS tables with one line of code or one click.</Description>
+      <Keywords>kaggle,datasets,csv,python,import</Keywords>
+      <Packaging>module</Packaging>
+      <SystemRequirements Version="&gt;=2023.1"/>
+      <SourcesRoot>src</SourcesRoot>
+      <Resource Name="dc.kaggle2iris.PKG"/>
+      <FileCopy Name="python/kaggle2iris/" Target="${mgrdir}python/kaggle2iris/"/>
+      <CSPApplication
+        Url="/api/kaggle2iris"
+        DispatchClass="dc.kaggle2iris.REST"
+        MatchRoles=":%DB_USER"
+        PasswordAuthEnabled="1"
+        UnauthenticatedEnabled="0"
+        Recurse="1"
+        CookiePath="/api/kaggle2iris"/>
+      <CSPApplication
+        Url="/kaggle2iris"
+        SourcePath="/web"
+        DeployPath="${cspdir}kaggle2iris"
+        ServeFiles="1"
+        Recurse="1"
+        PasswordAuthEnabled="1"
+        UnauthenticatedEnabled="0"
+        MatchRoles=":%DB_USER"/>
+    </Module>
+  </Document>
+</Export>
