@@ -1,0 +1,29 @@
+services:
+  iris:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    # local only: default _SYSTEM / SYS password
+    ports:
+      - "127.0.0.1:${IRIS_SQL_PORT:-1972}:1972"
+      - "127.0.0.1:${IRIS_WEB_PORT:-52773}:52773"
+    # passed through when set on the host; public datasets need no Kaggle credentials
+    environment:
+      - KAGGLE_API_TOKEN
+      - KAGGLE_USERNAME
+      - KAGGLE_KEY
+      - KAGGLE2IRIS_MAX_ROWS
+      - KAGGLE2IRIS_MAX_DOWNLOAD_MB
+      - KAGGLE2IRIS_PREVIEW_MAX_MB
+      - KAGGLE2IRIS_CACHE_TTL
+      - KAGGLE2IRIS_MAX_JOBS
+      - KAGGLE2IRIS_SHOW_PRIVATE
+      - KAGGLE2IRIS_EXACT
+    healthcheck:
+      test: ["CMD", "/irisHealth.sh"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+    volumes:
+      - ./:/home/irisowner/dev
