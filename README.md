@@ -35,7 +35,6 @@
 - [Safety and limits](#safety-and-limits)
 - [Running the tests](#running-the-tests)
 - [Troubleshooting](#troubleshooting)
-- [Project layout](#project-layout)
 - [License](#license)
 
 ## Features
@@ -525,25 +524,6 @@ If the container runs on other ports, set `IRIS_WEB_PORT` (and `IRIS_SQL_PORT`) 
 
 **"Kaggle rate limit reached."** Wait a minute. Requests with `KAGGLE_API_TOKEN` may get a higher limit.
 
-## Project layout
-
-```
-python/kaggle2iris/     Python package: kaggle.py (Kaggle API, downloads, previews),
-                        readers.py (CSV, TSV, Parquet, JSON, Excel), loader.py (types, insert),
-                        plan.py (import plans and imports)
-src/dc/kaggle2iris/     Loader.cls (ObjectScript and SQL entry points), Kaggle.cls, Job.cls
-                        (background imports), Tables.cls, ImportLog.cls, REST.cls
-web/                    the web app: index.html, app.css, js/ (no framework, no build step)
-tests/                  Python tests, UI tests (tests/ui), run_all.sh and the other scripts
-docs/screenshots/       images for this README
-module.xml              IPM package
-Dockerfile, docker-compose.yml, iris.script
-requirements.txt        Python libraries for IPM installs
-constraints.txt         exact versions used in the Docker image
-API.md                  REST API reference
-```
-
-The Docker image is pinned to IRIS 2026.1.0.234 and to the package versions in `constraints.txt`, the versions everything was tested with.
 
 ## License
 
