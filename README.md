@@ -13,7 +13,6 @@
 ## Contents
 - [Features](#features)
 - [Quick start](#quick-start)
-- [Tutorial](#tutorial)
   1. [Start IRIS](#1-start-iris)
   2. [Find a dataset](#2-find-a-dataset)
   3. [Look inside a dataset](#3-look-inside-a-dataset)
