@@ -28,7 +28,6 @@
   13. [Private datasets](#13-private-datasets)
   14. [The REST API](#14-the-rest-api)
   15. [Python](#15-python)
-  16. [Themes and phones](#16-themes-and-phones)
 - [Installing with IPM](#installing-with-ipm)
 - [Configuration](#configuration)
 - [How it works](#how-it-works)
@@ -186,45 +185,6 @@ Click a table to open it:
 
 The imported tables are ordinary IRIS tables, so every SQL tool can use them.
 
-1. Open the Management Portal at http://localhost:52773/csp/sys/UtilHome.csp and log in.
-2. Go to **System Explorer > SQL** and switch the namespace to **USER**.
-3. Under **Tables**, filter the schema by `Demo` and click `Demo.Orders` to see its columns.
-4. In **Execute Query**, run:
-
-```sql
-SELECT order_status, COUNT(*) AS orders
-FROM Demo.Orders
-GROUP BY order_status
-ORDER BY orders DESC
-```
-
-The purchase and delivery columns arrived as text in the CSV file, but they are real `TIMESTAMP` columns in IRIS, so date functions work:
-
-```sql
-SELECT TOP 10 order_id,
-       DATEDIFF('day', order_purchase_timestamp, order_delivered_customer_date) AS days_to_deliver
-FROM Demo.Orders
-WHERE order_delivered_customer_date IS NOT NULL
-ORDER BY days_to_deliver DESC
-```
-
-After an all-files import you can join the tables. With a row limit each file is cut on its own, so a join finds only a few matches; import without a limit to get the real numbers:
-
-```sql
-SELECT TOP 10 c.customer_state, COUNT(*) AS orders
-FROM KG.olist_orders_dataset o
-JOIN KG.olist_customers_dataset c ON c.customer_id = o.customer_id
-GROUP BY c.customer_state
-ORDER BY orders DESC
-```
-
-The loader cleans column names for SQL: names that are reserved words get a `_` at the end (in `uciml/iris`, `Id` becomes `Id_`), spaces and symbols become `_`, and accents are removed (`Café` becomes `Cafe`).
-
-Text columns compare exactly, so `'delivered'` and `'Delivered'` are different values. For a case-insensitive search use `%SQLUPPER`:
-
-```sql
-SELECT COUNT(*) FROM Demo.Orders WHERE %SQLUPPER(order_status) = %SQLUPPER('DELIVERED')
-```
 
 ### 9. Import from an IRIS terminal
 
@@ -400,18 +360,6 @@ To load a pandas DataFrame or a pyarrow Table you already have:
 from kaggle2iris.loader import IrisSQL, load_dataframe
 load_dataframe(df, "Demo.Mine", IrisSQL())
 ```
-
-### 16. Themes and phones
-
-The button in the top bar switches between the dark and the light theme; the choice is remembered. Both themes meet the WCAG contrast guidelines.
-
-> **[Screenshot: `docs/screenshots/light-theme.png`]**
-> A dataset page in the light theme.
-
-On a phone the side menu becomes a bar under the top bar, results show in one column, and the import panel moves below the dataset with a **Jump to import** button.
-
-> <img width="1937" alt="image" src="https://github.com/user-attachments/assets/be37b6d7-4a51-4fe1-ba9f-f1f62ad25a65" />
-> The Explore page on a phone. This image is tall; show it at about 260 pixels wide.
 
 ## Installing with IPM
 
