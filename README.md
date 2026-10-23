@@ -6,7 +6,7 @@
 ![InterSystems IRIS 2023.1+](https://img.shields.io/badge/InterSystems%20IRIS-2023.1%2B-1f6feb)
 ![Version 1.0.0](https://img.shields.io/badge/version-1.0.0-informational)
 
-> <img width="941" alt="image" src="https://github.com/user-attachments/assets/695fc68a-4439-478d-97ba-e438ac56a267" />
+<img width="2540" alt="image" src="https://github.com/user-attachments/assets/86bab2cf-9d59-4d35-b472-18965dabeb87" />
 
 > The Explore page with search results for "iris".
 
@@ -90,8 +90,6 @@ docker compose up -d --build --wait
 
 The first build takes a few minutes. It downloads the IRIS image and installs the Python libraries for embedded Python (`pandas`, `pyarrow`, `openpyxl`). `--wait` returns when IRIS is up and the package is installed in the `USER` namespace.
 
-The container listens on your own machine only:
-
 | | Address |
 |---|---|
 | Web app | http://localhost:52773/kaggle2iris/index.html |
@@ -100,13 +98,14 @@ The container listens on your own machine only:
 
 ### 2. Find a dataset
 
-Open http://localhost:52773/kaggle2iris/index.html and sign in. The address needs the `index.html` at the end.
+Open http://localhost:52773/kaggle2iris/index.html and sign in with _SYSTEM / SYS.
 
 The **Explore** page starts with the hottest datasets on Kaggle. Type `iris` in the search box. You can sort the results by **Hottest**, **Most votes**, **Recently updated** or **Newest**, and narrow them down by **File type**, **License**, **Size** and **Tag**. The search and filters are part of the page address, so you can bookmark or share a search. **Show more** loads the next 20 datasets.
 
 Each card shows the dataset title and id (`owner/dataset`), the subtitle, its first tags and license, the total size, votes, downloads and when it was last updated.
 
-> **[Screenshot: `docs/screenshots/explore.png`]**
+> <img width="1570" alt="image" src="https://github.com/user-attachments/assets/8bf83509-4ccc-4b9d-b10d-bbe2e6e126ca" />
+
 > Search results for "iris" on the Explore page.
 
 ### 3. Look inside a dataset
@@ -120,10 +119,11 @@ Above the tabs, **File** lists the files that can be imported, with their type a
 - **Preview** shows the actual rows of the selected file, 20 per page, with the type of each column. Long texts are shortened (hover over a cell to read more). Nothing is imported into IRIS for this. The preview covers the first 1,000 rows of a file.
 - **Schema** lists every column of the file next to the IRIS column name and type that an import would create.
 
-> **[Screenshot: `docs/screenshots/dataset-preview.png`]**
+> <img width="1607" alt="image" src="https://github.com/user-attachments/assets/1ac959f7-9d4e-4255-9214-70184df9a882" />
 > The Preview tab of `uciml/iris` with the import panel on the right.
 
-> **[Screenshot: `docs/screenshots/dataset-schema.png`]**
+> <img width="1576" alt="image" src="https://github.com/user-attachments/assets/a0a153e4-39f2-4cdd-96fe-349e7d9c66d8" />
+
 > The Schema tab: the file's columns next to the planned IRIS columns.
 
 The tabs work with the keyboard too: the arrow keys, Home and End move between them.
@@ -143,7 +143,7 @@ Click **Review plan**. Nothing is written yet. The plan says whether the table w
 
 Click **Start import**. The import runs in the background inside IRIS, and the panel follows it: "Looking up the dataset", "Downloading from Kaggle" with the megabytes so far, then "Writing rows to IRIS" with a progress bar. **Cancel import** stops it before the next batch of rows; a cancelled import leaves nothing behind. When it is done, the panel links to the new table.
 
-> **[Screenshot: `docs/screenshots/import-progress.png`]**
+> <img width="1571" alt="image" src="https://github.com/user-attachments/assets/8370e6bb-f6f1-4576-b5e5-7d523bd9dc94" />
 > An import running in the background, with its progress and the Cancel button.
 
 Under the panel, **Same import in ObjectScript or SQL** shows the one-line command for exactly this import, with copy buttons.
@@ -165,7 +165,7 @@ Open **Imports** in the side menu.
 - **Background imports** lists the recent background imports with their state (running, ok, error, cancelled or interrupted), the file, who started them and when. Running imports show their progress and a **Cancel** button, and the page updates itself while something runs. Open a finished import to see its columns, version and encoding, or the tables of an all-files import, or the full error message.
 - **Import history** lists the last 50 imports from every source: this page, the REST API, SQL and ObjectScript. Filter it by status, or by dataset, file and table name. Dataset and table names link to their pages.
 
-> **[Screenshot: `docs/screenshots/imports.png`]**
+> <img width="1575"  alt="image" src="https://github.com/user-attachments/assets/d6001727-bb9b-43f0-bf5f-82fb0ce5df3a" />
 > The Imports page with finished background imports and the import history.
 
 ### 7. Work with the imported tables
@@ -180,7 +180,7 @@ Click a table to open it:
 
 **Copy SELECT** copies a ready-made query. **Re-import** opens the dataset page with the same file and table filled in, which is the quickest way to refresh a table.
 
-> **[Screenshot: `docs/screenshots/table-detail.png`]**
+> <img width="1582" alt="image" src="https://github.com/user-attachments/assets/7db3637f-3dfc-4493-8cdc-32f6f7a192be" />
 > The `Demo.Orders` table with its rows, columns and imports.
 
 ### 8. Query the tables with SQL
@@ -411,7 +411,7 @@ The button in the top bar switches between the dark and the light theme; the cho
 
 On a phone the side menu becomes a bar under the top bar, results show in one column, and the import panel moves below the dataset with a **Jump to import** button.
 
-> **[Screenshot: `docs/screenshots/phone-explore.png`]**
+> <img width="1937" alt="image" src="https://github.com/user-attachments/assets/be37b6d7-4a51-4fe1-ba9f-f1f62ad25a65" />
 > The Explore page on a phone. This image is tall; show it at about 260 pixels wide.
 
 ## Installing with IPM
