@@ -6,7 +6,8 @@
 ![InterSystems IRIS 2023.1+](https://img.shields.io/badge/InterSystems%20IRIS-2023.1%2B-1f6feb)
 ![Version 1.0.0](https://img.shields.io/badge/version-1.0.0-informational)
 
-> **[Screenshot: `docs/screenshots/explore.png`]**
+> <img width="941" alt="image" src="https://github.com/user-attachments/assets/695fc68a-4439-478d-97ba-e438ac56a267" />
+
 > The Explore page with search results for "iris".
 
 ## Contents
@@ -80,18 +81,6 @@
 
 ## Quick start
 
-```bash
-git clone https://github.com/mwaseem75/iris-kaggle-loader.git
-cd iris-kaggle-loader
-docker compose up -d --build --wait
-```
-
-Open **http://localhost:52773/kaggle2iris/index.html** and sign in with `_SYSTEM` / `SYS`.
-
-## Tutorial
-
-The tutorial takes about 15 minutes. You need Docker Desktop (or Docker with Compose v2), git, internet access for kaggle.com, and about 4 GB of free disk space. You do not need a Kaggle account.
-
 ### 1. Start IRIS
 
 ```bash
@@ -109,14 +98,6 @@ The container listens on your own machine only:
 | Web app | http://localhost:52773/kaggle2iris/index.html |
 | Management Portal | http://localhost:52773/csp/sys/UtilHome.csp |
 | SQL (DBeaver, JDBC, ODBC) | localhost:1972, namespace `USER` |
-
-The login is `_SYSTEM` / `SYS`. This is a demo setup; do not expose it to a network. If port 52773 or 1972 is taken, for example because [iris-hf-loader](https://github.com/mwaseem75/iris-hf-loader) is running too, choose other ones:
-
-```bash
-IRIS_WEB_PORT=52774 IRIS_SQL_PORT=1973 docker compose up -d --build --wait
-```
-
-Then use 52774 instead of 52773 in the addresses below.
 
 ### 2. Find a dataset
 
